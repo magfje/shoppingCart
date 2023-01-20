@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=DM+Serif+Display&display=swap');
+
+        * {
+            font-family: 'DM Sans', sans-serif;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+        }
+
+        h2 {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .continer {
+            display: flex;
+            flex-flow: column nowrap;
+        }
+
+        .row {
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        .nav {
+            display: flex;
+            height: 130px;
+            background-color: #D9D9D9;
+        }
+
+        .logoBox {
+            display: flex;
+            align-items: center;
+        }
+
+        .cards {
+            display: flex;
+            height: max-content;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+        }
+
+        .cartContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* display: inline;  none*/
+            width: 300px;
+            background-color: #afaeae;
+            margin-left: auto;
+            transition: 200ms;
+
+        }
+
+        .cartContainer:hover {
+            background-color: #029160;
+        }
+
+        .cartContainer .cartItem {
+            opacity: 0;
+        }
+
+        .cartContainer:hover .cartItem {
+            opacity: 100;
+            z-index: 1;
+            animation: move 0.2s ease;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+
+
+        .cartItem {
+            display: flex;
+            border: 1px solid rgb(206, 206, 206);
+            justify-content: space-between;
+            flex: 1;
+            width: 100%;
+            align-items: center;
+            background-color: white;
+            padding-right: 10px;
+        }
+
+        .cartButton {
+            margin-bottom: 60px;
+            margin-top: 50px;
+        }
+
+        .cartImg {
+            height: 80px;
+        }
+
+
+        .item-card {
+            display: flex;
+            width: 300px;
+            flex-flow: column;
+            align-items: center;
+            height: fit-content;
+            background-color: #D9D9D9;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            margin: 50px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .item-card:hover {
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        .logoImg {
+            width: 100px;
+            height: auto;
+        }
+
+        .prodImg {
+            max-width: 300px;
+            overflow: hidden;
+        }
+
+        .addBtn {
+            margin-bottom: 20px;
+            border: none;
+            background-color: #029160;
+            border-radius: 15px;
+            height: 50px;
+            width: 100px;
+            color: white;
+
+        }
+
+        .addBtn:hover {
+            background-color: #05c07f;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        .addBtn:disabled {
+            background-color: #afaeae;
+            color: #D9D9D9;
+        }
+
+        .dButton {
+            background-color: blue;
+        }
+
+        .priceTotal {
+            display: flex;
+            gap: 10px;
+        }
+
+        .counter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .counter button {
+            width: 40px;
+        }
+
+        @keyframes move {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0px);
+                opacity: 100;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="continer">
+        <div class="nav">
+
+            <div class="logoBox">
+                <img class="logoImg"
+                    src="https://media.discordapp.net/attachments/1059366256970575962/1064510065224204308/pngwing.com.png?width=508&height=582"
+                    alt="dolphinImg">
+                <h1>Dolphin Pro</h1>
+            </div>
+
+            <div id="cartID" class="cartContainer">
+                <div class="cartButton">
+                    <div class="priceTotal">
+                        <span class="material-symbols-outlined">
+                            shopping_cart
+                        </span>
+                        <h4>Total Price</h4>
+                        <h4 id="price">$0</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="cards">
+                <div class="item-card">
+                    <img class="prodImg" src="shoe2.webp">
+                    <h2>Shoe 1</h2>
+                    <h3>$69</h3>
+                    <button class="addBtn" id="item1">Add to cart</button>
+                </div>
+                <div class="item-card">
+                    <img class="prodImg" src="shoe3.webp" alt="tekst">
+                    <h2>Item 2</h2>
+                    <h3>$420</h3>
+                    <button class="addBtn" id="item2">Add to cart</button>
+                </div>
+                <div class="item-card">
+                    <img class="prodImg" src="shoe2.webp" />
+                    <h2>Item 3</h2>
+                    <h3>$21</h3>
+                    <button class="addBtn" id="item3">Add to cart</button>
+                </div>
+                <div class="item-card">
+                    <img class="prodImg" src="shoe3.webp" />
+                    <h2>Item 4</h2>
+                    <h3>$8008</h3>
+                    <button class="addBtn" id="item4">Add to cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addToCart(itemID, imgSrc, price) {
+            document.getElementById('cartID').innerHTML += `
+                <div class="cartItem">
+                    <img class="cartImg" src="${imgSrc}">
+                    <h4>${itemID}</h4>
+                    <h4>${price}</h4>
+                    <div class="counter">
+                        <button>-</button>
+                        <p>1</p>
+                        <button>+</button>
+                    </div>
+                </div>
+            `
+        }
+
+        let b = 0;
+        function getData() {
+            let getPrice = this.previousElementSibling; //this.previousElementSibling.
+            let getName = getPrice.previousElementSibling; //this.previousElementSibling.previousElementSibling
+            let getImg = getName.previousElementSibling; //this.previousElementSibling.previousElementSibling.previousElementSibling
+            
+
+            let setPrice = getPrice.innerHTML;
+            let setName = getName.innerHTML;
+            let setImg = getImg.src;
+
+            addToCart(setName, setImg, setPrice);
+
+            this.disabled = true;
+            this.innerHTML = "Added"
+
+
+            //calc price
+            let a = setPrice.replace('$', '');
+            b = b + Number(a);
+            c = "$" + b
+
+            console.log(c)
+            document.getElementById('price').innerHTML = c
+
+
+        }
+
+        //add event listener to buttons
+
+        const addToBtn = document.querySelectorAll('.addBtn');
+        //loops throuhg all buttons, and assigns a "id" for each button
+        for (let i = 0; i < addToBtn.length; i++) {
+            addToBtn[i].addEventListener("click", getData);
+        }
+
+  
+    </script>
+</body>
+
+</html>

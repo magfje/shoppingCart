@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=DM+Serif+Display&display=swap');
+
+        * {
+            font-family: 'DM Sans', sans-serif;
+            margin: 0px;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+        }
+
+        h2 {
+            font-family: 'DM Serif Display', serif;
+        }
+
+        .continer {
+            display: flex;
+            flex-flow: column nowrap;
+        }
+
+        .row {
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        .nav {
+            display: flex;
+            height: 130px;
+            background-color: #D9D9D9;
+        }
+
+        .logoBox {
+            display: flex;
+            align-items: center;
+        }
+
+        .cards {
+            display: flex;
+            height: max-content;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .cartContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* display: inline;  none*/
+            width: 300px;
+            overflow: hidden;
+            margin-left: auto;
+            transition: 200ms;
+        }
+
+        .cartContainer:hover {
+            overflow: visible;
+            height: fit-content;
+            z-index: 1;
+            background-color: #afaeae;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        .cartItem {
+            display: flex;
+            border: 1px solid rgb(206, 206, 206);
+            justify-self: end;
+            justify-content: space-evenly;
+            width: 100%;
+            align-items: center;
+            background-color: white;
+        }
+
+        .cartButton {
+            margin-bottom: 70px;
+            margin-top: 50px;
+        }
+
+        .cartImg {
+            height: 80px;
+        }
+
+
+        .item-card {
+            display: flex;
+            width: 300px;
+            flex-flow: column;
+            align-items: center;
+            height: fit-content;
+            background-color: #D9D9D9;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            margin: 50px;
+        }
+
+        .item-card:hover {
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        .logoImg {
+            width: 100px;
+            height: auto;
+        }
+
+        .prodImg {
+            max-width: 300px;
+            overflow: hidden;
+        }
+
+        .addBtn {
+            margin-bottom: 20px;
+            border: none;
+            background-color: #029160;
+            border-radius: 15px;
+            height: 50px;
+            width: 100px;
+            color: white;
+
+        }
+
+        .addBtn:hover {
+            background-color: #05c07f;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        .addBtn:disabled {
+            background-color: #afaeae;
+            color: #D9D9D9;
+        }
+
+        .dButton {
+            background-color: blue;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="continer">
+        <div class="nav">
+
+            <div class="logoBox">
+                <img class="logoImg"
+                    src="https://media.discordapp.net/attachments/1059366256970575962/1064510065224204308/pngwing.com.png?width=508&height=582"
+                    alt="dolphinImg">
+                <h1>Dolphin Pro</h1>
+            </div>
+
+            <div id="cartID" class="cartContainer">
+                <div class="cartButton">
+                    <h4>Cart</h4>
+                </div>
+                <div class="cartItem">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="cards">
+                <div class="item-card">
+                    <img class="prodImg" src="shoe2.webp" />
+                    <h2>Shoe 1</h2>
+                    <button class="addBtn" id="item1">Add to cart</button>
+                </div>
+                <div class="item-card">
+                    <img class="prodImg" src="shoe3.webp" />
+                    <h2>Item 2</h2>
+                    <button class="addBtn" id="item2">Add to cart</button>
+                </div>
+                <div class="item-card">
+                    <img class="prodImg" src="shoe2.webp" />
+                    <h2>Item 3</h2>
+                    <button class="addBtn" id="item3">Add to cart</button>
+                </div>
+                <div class="item-card">
+                    <img class="prodImg" src="shoe3.webp" />
+                    <h2>Item 4</h2>
+                    <button class="addBtn" id="item4">Add to cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addToCart(itemID, imgSrc) {
+            /* let newItem = document.createElement("div"); //Alternativ versjon
+            newItem.classList.add("cartItem");
+            newItem.innerHTML = `
+                    <img class="cartImg" src="${imgSrc}">
+                    <h4>${itemID}</h4>
+                    <button>-</button>
+                    <p>1</p>
+                    <button>+</button>
+            `
+            cartID.append(newItem); */
+
+            document.getElementById('cartID').innerHTML += `
+                <div class="cartItem">
+                    <img class="cartImg" src="${imgSrc}">
+                    <h4>${itemID}</h4>
+                    <button>-</button>
+                    <p>1</p>
+                    <button>+</button>
+                </div>
+            `
+
+        }
+
+        function getDatas() {
+            let prev = this.previousElementSibling;
+            let prevPrev = prev.previousElementSibling;
+
+            let x = prev.innerHTML;
+            let y = prevPrev.src;
+
+            let name = event.target.getAttribute("data-name");
+            console.log(this.previousElementSibling.innerHTML);
+            addToCart(x, y);
+            this.innerHTML = "added to cart";
+            this.disabled = true;
+
+            console.log(x, y);
+        }
+
+
+        item1.addEventListener("click", getDatas)
+        item2.addEventListener("click", getDatas)
+        item3.addEventListener("click", getDatas)
+        item4.addEventListener("click", getDatas)
+/* 
+        item2.addEventListener("click", function () {
+            let prev = this.previousElementSibling;
+            let prevPrev = prev.previousElementSibling;
+
+            let x = prev.innerHTML;
+            let y = prevPrev.src;
+
+            let name = event.target.getAttribute("data-name");
+            console.log(this.previousElementSibling.innerHTML);
+            addToCart(x, y);
+            this.innerHTML = "added to cart";
+            this.disabled = true;
+
+
+            console.log(x, y)
+        });
+        item2.addEventListener("click", function () {
+            addToCart("item2", "shoe2.webp");
+            this.innerHTML = "added to cart";
+            this.disabled = true;
+        });
+        item3.addEventListener("click", function () {
+            addToCart("item3", "shoe2.webp");
+            this.innerHTML = "added to cart";
+            this.disabled = true;
+        });
+        item4.addEventListener("click", function () {
+            addToCart("item4", "shoe2.webp");
+            this.innerHTML = "added to cart";
+            this.disabled = true;
+        }); */
+
+
+        //item2.addEventListener("click", addToCart("item2", "shoe2.webp"));
+        //item3.addEventListener("click", addToCart("item3", "shoe2.webp"));
+        //item4.addEventListener("click", addToCart("item4", "shoe2.webp"));
+    </script>
+</body>
+
+</html>
