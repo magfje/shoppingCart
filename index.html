@@ -48,12 +48,19 @@
             align-items: center;
         }
 
+        .content {
+            display: flex;
+            justify-content: center;
+        }
+
         .cards {
             display: flex;
             height: max-content;
+            width: 100vh;
+
             flex-direction: row;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: center;
 
         }
 
@@ -103,7 +110,9 @@
         }
 
         .cartImg {
+            object-fit: cover;
             height: 80px;
+            width: 80px;
         }
 
 
@@ -112,7 +121,7 @@
             width: 300px;
             flex-flow: column;
             align-items: center;
-            height: fit-content;
+
             background-color: #D9D9D9;
             box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
             margin: 50px;
@@ -130,7 +139,9 @@
         }
 
         .prodImg {
-            max-width: 300px;
+            object-fit: cover;
+            width: 300px;
+            height: 300px;
             overflow: hidden;
         }
 
@@ -217,27 +228,39 @@
         <div class="content">
             <div class="cards">
                 <div class="item-card">
-                    <img class="prodImg" src="shoe2.webp">
-                    <h2>Shoe 1</h2>
+                    <img class="prodImg" src="badeball.webp">
+                    <h2>Badeball</h2>
                     <h3>$69</h3>
                     <button class="addBtn" id="item1">Add to cart</button>
                 </div>
                 <div class="item-card">
-                    <img class="prodImg" src="shoe3.webp" alt="tekst">
-                    <h2>Item 2</h2>
-                    <h3>$420</h3>
+                    <img class="prodImg" src="jellyfish.jpg" alt="tekst">
+                    <h2>Jellyfish</h2>
+                    <h3>$84</h3>
                     <button class="addBtn" id="item2">Add to cart</button>
                 </div>
                 <div class="item-card">
-                    <img class="prodImg" src="shoe2.webp" />
-                    <h2>Item 3</h2>
+                    <img class="prodImg" src="sardines.jpg" />
+                    <h2>Sardines</h2>
                     <h3>$21</h3>
                     <button class="addBtn" id="item3">Add to cart</button>
                 </div>
                 <div class="item-card">
-                    <img class="prodImg" src="shoe3.webp" />
-                    <h2>Item 4</h2>
-                    <h3>$8008</h3>
+                    <img class="prodImg" src="shrimp.jpg" />
+                    <h2>Shrimp</h2>
+                    <h3>$616</h3>
+                    <button class="addBtn" id="item4">Add to cart</button>
+                </div>
+                <div class="item-card">
+                    <img class="prodImg" src="octopus.jpg" />
+                    <h2>Octopus</h2>
+                    <h3>$512</h3>
+                    <button class="addBtn" id="item4">Add to cart</button>
+                </div>
+                <div class="item-card">
+                    <img class="prodImg" src="cuddles.jpg" />
+                    <h2>Cuddles</h2>
+                    <h3>$124</h3>
                     <button class="addBtn" id="item4">Add to cart</button>
                 </div>
             </div>
@@ -265,7 +288,6 @@
             let getPrice = this.previousElementSibling; //this.previousElementSibling.
             let getName = getPrice.previousElementSibling; //this.previousElementSibling.previousElementSibling
             let getImg = getName.previousElementSibling; //this.previousElementSibling.previousElementSibling.previousElementSibling
-            
 
             let setPrice = getPrice.innerHTML;
             let setName = getName.innerHTML;
@@ -296,7 +318,7 @@
             addToBtn[i].addEventListener("click", getData);
         }
 
-  
+
     </script>
 </body>
 
