@@ -295,26 +295,23 @@
             this.disabled = true;
             this.innerHTML = "Added"
 
-
             //calc price
             let a = setPrice.replace('$', '');
             b = b + Number(a);
             c = "$" + b
 
-            console.log(c)
+            //console.log(c)
             document.getElementById('price').innerHTML = c
-
 
         }
 
         //add event listener to buttons
-
         const addToBtn = document.querySelectorAll('.addBtn');
-        //loops throuhg all buttons, and assigns a "id" for each button
+
+        //loops through all buttons, and assigns a "id" for each button
         for (let i = 0; i < addToBtn.length; i++) {
             addToBtn[i].addEventListener("click", getData);
         }
-
 
     </script>
 </body>
