@@ -6,12 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=DM+Serif+Display&display=swap');
 
         * {
             font-family: 'DM Sans', sans-serif;
             margin: 0px;
+            padding: 0px;
         }
 
         h1 {
@@ -19,7 +24,7 @@
         }
 
         h2 {
-            font-family: 'DM Serif Display', serif;
+            font-family: 'DM Sans', sans-serif;
         }
 
         .continer {
@@ -49,6 +54,7 @@
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-between;
+
         }
 
         .cartContainer {
@@ -57,31 +63,42 @@
             align-items: center;
             /* display: inline;  none*/
             width: 300px;
-            overflow: hidden;
+            background-color: #afaeae;
             margin-left: auto;
             transition: 200ms;
+
         }
 
         .cartContainer:hover {
-            overflow: visible;
-            height: fit-content;
-            z-index: 1;
-            background-color: #afaeae;
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            background-color: #029160;
         }
+
+        .cartContainer .cartItem {
+            opacity: 0;
+        }
+
+        .cartContainer:hover .cartItem {
+            opacity: 100;
+            z-index: 1;
+            animation: move 0.2s ease;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+
 
         .cartItem {
             display: flex;
             border: 1px solid rgb(206, 206, 206);
-            justify-self: end;
-            justify-content: space-evenly;
+            justify-content: space-between;
+            flex: 1;
             width: 100%;
             align-items: center;
             background-color: white;
+            padding-right: 10px;
         }
 
         .cartButton {
-            margin-bottom: 70px;
+            margin-bottom: 60px;
             margin-top: 50px;
         }
 
@@ -99,6 +116,8 @@
             background-color: #D9D9D9;
             box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
             margin: 50px;
+            border-radius: 15px;
+            overflow: hidden;
         }
 
         .item-card:hover {
@@ -139,6 +158,33 @@
         .dButton {
             background-color: blue;
         }
+
+        .priceTotal {
+            display: flex;
+            gap: 10px;
+        }
+
+        .counter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .counter button {
+            width: 40px;
+        }
+
+        @keyframes move {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0px);
+                opacity: 100;
+            }
+        }
     </style>
 
 </head>
@@ -157,10 +203,13 @@
 
             <div id="cartID" class="cartContainer">
                 <div class="cartButton">
-                    <h4>Cart</h4>
-                </div>
-                <div class="cartItem">
-
+                    <div class="priceTotal">
+                        <span class="material-symbols-outlined">
+                            shopping_cart
+                        </span>
+                        <h4>Total Price</h4>
+                        <h4 id="price">$0</h4>
+                    </div>
                 </div>
             </div>
         </div>
@@ -168,23 +217,27 @@
         <div class="content">
             <div class="cards">
                 <div class="item-card">
-                    <img class="prodImg" src="shoe2.webp" />
+                    <img class="prodImg" src="shoe2.webp">
                     <h2>Shoe 1</h2>
+                    <h3>$69</h3>
                     <button class="addBtn" id="item1">Add to cart</button>
                 </div>
                 <div class="item-card">
-                    <img class="prodImg" src="shoe3.webp" />
+                    <img class="prodImg" src="shoe3.webp" alt="tekst">
                     <h2>Item 2</h2>
+                    <h3>$420</h3>
                     <button class="addBtn" id="item2">Add to cart</button>
                 </div>
                 <div class="item-card">
                     <img class="prodImg" src="shoe2.webp" />
                     <h2>Item 3</h2>
+                    <h3>$21</h3>
                     <button class="addBtn" id="item3">Add to cart</button>
                 </div>
                 <div class="item-card">
                     <img class="prodImg" src="shoe3.webp" />
                     <h2>Item 4</h2>
+                    <h3>$8008</h3>
                     <button class="addBtn" id="item4">Add to cart</button>
                 </div>
             </div>
@@ -192,88 +245,58 @@
     </div>
 
     <script>
-        function addToCart(itemID, imgSrc) {
-            /* let newItem = document.createElement("div"); //Alternativ versjon
-            newItem.classList.add("cartItem");
-            newItem.innerHTML = `
-                    <img class="cartImg" src="${imgSrc}">
-                    <h4>${itemID}</h4>
-                    <button>-</button>
-                    <p>1</p>
-                    <button>+</button>
-            `
-            cartID.append(newItem); */
-
+        function addToCart(itemID, imgSrc, price) {
             document.getElementById('cartID').innerHTML += `
                 <div class="cartItem">
                     <img class="cartImg" src="${imgSrc}">
                     <h4>${itemID}</h4>
-                    <button>-</button>
-                    <p>1</p>
-                    <button>+</button>
+                    <h4>${price}</h4>
+                    <div class="counter">
+                        <button>-</button>
+                        <p>1</p>
+                        <button>+</button>
+                    </div>
                 </div>
             `
+        }
+
+        let b = 0;
+        function getData() {
+            let getPrice = this.previousElementSibling; //this.previousElementSibling.
+            let getName = getPrice.previousElementSibling; //this.previousElementSibling.previousElementSibling
+            let getImg = getName.previousElementSibling; //this.previousElementSibling.previousElementSibling.previousElementSibling
+            
+
+            let setPrice = getPrice.innerHTML;
+            let setName = getName.innerHTML;
+            let setImg = getImg.src;
+
+            addToCart(setName, setImg, setPrice);
+
+            this.disabled = true;
+            this.innerHTML = "Added"
+
+
+            //calc price
+            let a = setPrice.replace('$', '');
+            b = b + Number(a);
+            c = "$" + b
+
+            console.log(c)
+            document.getElementById('price').innerHTML = c
+
 
         }
 
-        function getDatas() {
-            let prev = this.previousElementSibling;
-            let prevPrev = prev.previousElementSibling;
+        //add event listener to buttons
 
-            let x = prev.innerHTML;
-            let y = prevPrev.src;
-
-            let name = event.target.getAttribute("data-name");
-            console.log(this.previousElementSibling.innerHTML);
-            addToCart(x, y);
-            this.innerHTML = "added to cart";
-            this.disabled = true;
-
-            console.log(x, y);
+        const addToBtn = document.querySelectorAll('.addBtn');
+        //loops throuhg all buttons, and assigns a "id" for each button
+        for (let i = 0; i < addToBtn.length; i++) {
+            addToBtn[i].addEventListener("click", getData);
         }
 
-
-        item1.addEventListener("click", getDatas)
-        item2.addEventListener("click", getDatas)
-        item3.addEventListener("click", getDatas)
-        item4.addEventListener("click", getDatas)
-/* 
-        item2.addEventListener("click", function () {
-            let prev = this.previousElementSibling;
-            let prevPrev = prev.previousElementSibling;
-
-            let x = prev.innerHTML;
-            let y = prevPrev.src;
-
-            let name = event.target.getAttribute("data-name");
-            console.log(this.previousElementSibling.innerHTML);
-            addToCart(x, y);
-            this.innerHTML = "added to cart";
-            this.disabled = true;
-
-
-            console.log(x, y)
-        });
-        item2.addEventListener("click", function () {
-            addToCart("item2", "shoe2.webp");
-            this.innerHTML = "added to cart";
-            this.disabled = true;
-        });
-        item3.addEventListener("click", function () {
-            addToCart("item3", "shoe2.webp");
-            this.innerHTML = "added to cart";
-            this.disabled = true;
-        });
-        item4.addEventListener("click", function () {
-            addToCart("item4", "shoe2.webp");
-            this.innerHTML = "added to cart";
-            this.disabled = true;
-        }); */
-
-
-        //item2.addEventListener("click", addToCart("item2", "shoe2.webp"));
-        //item3.addEventListener("click", addToCart("item3", "shoe2.webp"));
-        //item4.addEventListener("click", addToCart("item4", "shoe2.webp"));
+  
     </script>
 </body>
 
